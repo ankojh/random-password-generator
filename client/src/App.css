@@ -12,4 +12,9 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top:100px;
+}
+
+.App-Heading{
+  color:#5f0a87;
 }

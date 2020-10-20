@@ -1,0 +1,17 @@
+.App-Primary-Button{
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: #a4508b;
+  color: white;
+  padding: 20px;
+  margin-top: 50px;
+  border-radius: 5px;
+  font-size: 15px;
+  box-shadow: 0px 0px 5px rgb(197, 197, 197);
+}
+
+
+.App-Primary-Button:hover{
+  box-shadow: 0px 0px 10px grey;
+}

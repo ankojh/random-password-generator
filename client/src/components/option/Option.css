@@ -1,9 +1,23 @@
 .App-Option{
   min-width: 300px;
   padding:20px;
-  margin: 10px;
+  margin: 15px;
   text-align: center;
   border-radius: 5px;
   border: 1px solid black;
   cursor: pointer;
+  user-select: none;
+  font-size: 15px;
+  box-shadow: 0px 0px 5px rgb(197, 197, 197);
+}
+
+.App-Option:hover{
+  box-shadow: 0px 0px 10px grey;
+}
+
+.App-Option.option--active{
+  color: white;
+  border: 1px solid white;
+  background-color: #a4508b;
+  background-image: linear-gradient(326deg, #a4508b 0%, #5f0a87 74%);
 }
