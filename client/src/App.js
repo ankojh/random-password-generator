@@ -28,6 +28,7 @@ function App() {
 
   useEffect(()=>{
     generatePassword();
+  // eslint-disable-next-line 
   },[])
 
   
@@ -43,8 +44,8 @@ function App() {
     setCurrentPassword(generatedPassword);
   }
 
-  function optionChanged(key) {
-    setState({ ...state, [key]: !state[key] })
+  async function optionChanged(key) {
+    await setState({ ...state, [key]: !state[key] })
     generatePassword();
   }
 

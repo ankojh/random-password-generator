@@ -34,10 +34,10 @@ export const generateRandomPassword = (options)=>{
   let characterSet = prevCharacterSet;
   
   //? optimization
-  // if(JSON.stringify(options) !== JSON.stringify(previousOptions)){
-     characterSet = generateSetFromOptions(options);
-    //  prevCharacterSet = [...characterSet];
-  // }
+  if(JSON.stringify(options) !== JSON.stringify(previousOptions)){
+     prevCharacterSet = [...characterSet];
+  }
+  characterSet = generateSetFromOptions(options);
 
   let password = ''
 

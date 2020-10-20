@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import './Password.css'
 
 
@@ -9,6 +9,7 @@ const Password = (props) => {
 
 
   const password = props.password ? props.password : '';
+  const passwordEl = useRef();
 
 
   function passwordOnChange(keyboardEvent){
@@ -16,18 +17,23 @@ const Password = (props) => {
   }
 
   function copyPasswordToClipboard() {
-    setCopiedState(true);
-    clearTimeout(copiedTimeout);
-    copiedTimeout = setTimeout(() => {
-      setCopiedState(false);
-    }, 2000);
+    if(passwordEl && passwordEl.current){
+      setCopiedState(true);
+      passwordEl.current.select();
+      passwordEl.current.setSelectionRange(0, 99999);
+      document.execCommand("copy");
+      clearTimeout(copiedTimeout);
+      copiedTimeout = setTimeout(() => {
+        setCopiedState(false);
+      }, 2000);
+    }
   }
 
   return (
     <div className="App-Password">
-      <input onChange={passwordOnChange} value={password} />
+      <input ref={passwordEl} onChange={passwordOnChange} value={password} />
       <button className="obama-grad" onClick={copyPasswordToClipboard}>Copy</button>
-      {copiedState && <span> Copied! </span>}
+      <span style={{ visibility: copiedState ? 'visible' : 'hidden'}}> Copied! </span>
     </div>
   );
 };
