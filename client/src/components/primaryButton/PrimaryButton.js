@@ -11,7 +11,7 @@ const PrimaryButton = (props) => {
     <button 
       onClick={onClickHandler}
       disabled={props.disabled}
-      className="App-Primary-Button">
+      className="App-Primary-Button obama-grad">
       {props.children}
     </button>
   );

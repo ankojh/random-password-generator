@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import Option from './components/option/Option';
 import Password from './components/password/Password';
@@ -7,7 +7,7 @@ import PrimaryButton from './components/primaryButton/PrimaryButton';
 import { generateRandomPassword } from './utils/password';
 
 
-const PASSWORD_OPTIONS = [
+const PASSWORD_OPTIONS = [ //! move to constants
   { key: 'includeNumbers', text: 'Numbers' },
   { key: 'includeUpperCaseAlphabets', text: 'Uppercase Characters' },
   { key: 'includeLowerCaseAlphabets', text: 'Lowercase Characters' },
@@ -26,7 +26,11 @@ function App() {
 
   const [currentPassword, setCurrentPassword] = useState('');
 
+  useEffect(()=>{
+    generatePassword();
+  },[])
 
+  
   function generatePassword() {
     const generatedPassword = generateRandomPassword({
       length: state.passwordLength,
@@ -44,9 +48,15 @@ function App() {
     generatePassword();
   }
 
-  function passwordChangedByUserInput(event){
+  function passwordChangedByUserInput(event) {
     setCurrentPassword(event.target.value);
   }
+
+  function passwordLengthChanged(newLength){
+    setState({ ...state, passwordLength: newLength})
+    generatePassword();
+  }
+
 
 
   return (
@@ -64,7 +74,18 @@ function App() {
             />)
         }
       </div>
-      <Password onChange={passwordChangedByUserInput} password={currentPassword}/>
+      <div className="App-Length-Option">
+        <input 
+          className="obama-grad"
+          type="range" 
+          min="4" 
+          max="16" 
+          value={state.passwordLength}
+          onChange={e => passwordLengthChanged(parseInt(e.target.value))} />
+
+        <span>Password Length: {state.passwordLength}</span>
+      </div>
+      <Password onChange={passwordChangedByUserInput} password={currentPassword} />
       <PrimaryButton onClick={generatePassword}>Regenerate</PrimaryButton>
     </div>
   );

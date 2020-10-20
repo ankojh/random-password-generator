@@ -26,7 +26,7 @@ const Password = (props) => {
   return (
     <div className="App-Password">
       <input onChange={passwordOnChange} value={password} />
-      <button onClick={copyPasswordToClipboard}>Copy</button>
+      <button className="obama-grad" onClick={copyPasswordToClipboard}>Copy</button>
       {copiedState && <span> Copied! </span>}
     </div>
   );

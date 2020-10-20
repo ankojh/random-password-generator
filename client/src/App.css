@@ -18,3 +18,45 @@
 .App-Heading{
   color:#5f0a87;
 }
+
+
+.App-Length-Option{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px;
+}
+
+.App-Length-Option input{
+  min-width: 300px;
+  -webkit-appearance: none;
+  outline: none;
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+
+
+.App-Length-Option span {
+  user-select: none;
+  font-size: 15px;
+}
+
+.App-Length-Option input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: white;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 50%;
+}
+
+.App-Length-Option input::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: white;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 50%;
+}
