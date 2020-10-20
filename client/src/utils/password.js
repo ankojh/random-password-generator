@@ -8,43 +8,44 @@ let previousOptions = {}
 let prevCharacterSet = []
 
 
-const generateSetFromOptions = (options)=>{
-  previousOptions = {...options};
+const generateSetFromOptions = (options) => {
+  previousOptions = { ...options };
   const set = []
-  if(options.numbers){
+  if (options.numbers) {
     set.push(...NUMBERS)
   }
 
-  if(options.upperCase){
+  if (options.upperCase) {
     set.push(...UPPERCASE_ALPHABETS)
   }
 
-  if(options.lowerCase){
+  if (options.lowerCase) {
     set.push(...LOWERCASE_ALPHABETS)
   }
 
-  if(options.special){
+  if (options.special) {
     set.push(...SPECIAL_CHARACTERS)
   }
 
   return set;
 }
 
-export const generateRandomPassword = (options)=>{
+export const generateRandomPassword = (options) => {
   let characterSet = prevCharacterSet;
-  
+
   //? optimization
-  if(JSON.stringify(options) !== JSON.stringify(previousOptions)){
-     prevCharacterSet = [...characterSet];
+  if (JSON.stringify(options) !== JSON.stringify(previousOptions)) {
+    characterSet = generateSetFromOptions(options);
   }
-  characterSet = generateSetFromOptions(options);
+
+  prevCharacterSet = [...characterSet];
+  previousOptions = options;
 
   let password = ''
 
-
-  if(characterSet.length){
+  if (characterSet.length) {
     for (let i = 0; i < options.length; i++) {
-      const randomIndex = getRandomInt(0, options.length);
+      const randomIndex = getRandomInt(0, characterSet.length);
       password += characterSet[randomIndex % characterSet.length];
     }
   }
